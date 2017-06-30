@@ -7,16 +7,19 @@ export const basename = "mrsa"
 export default [
   {
     path: '/home',
+    to: '/home',
     component: Home,
     title: '首页'
   },
   {
     path: '/readme',
+    to: '/readme',
     component: ReadMe,
     title: '须知'
   },
   {
-    path: '/todos',
+    path: '/todos(/:filter)?',
+    to: '/todos',
     component: Todos,
     title: '待办事项'
   }

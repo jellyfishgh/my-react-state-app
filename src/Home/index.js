@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 
@@ -16,9 +16,9 @@ export default class Home extends Component {
         <ScrollToTopOnMount />
         <ul>
           {routes &&
-            routes.map(({ path, title }) =>
-              <li key={path}>
-                <Link to={path}>
+            routes.map(({ to, title }) =>
+              <li key={to}>
+                <Link to={to}>
                   {title}
                 </Link>
               </li>
