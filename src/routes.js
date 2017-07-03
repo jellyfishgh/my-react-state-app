@@ -18,9 +18,9 @@ export default [
     title: '须知'
   },
   {
-    path: '/todos(/:filter)?',
+    path: '/todos/:type?',
     to: '/todos',
-    component: Todos,
-    title: '待办事项'
+    title: '待办事项',
+    component: Todos
   }
 ]
