@@ -1,28 +1,30 @@
-import logo from './logo.svg'
-import './App.css'
+import React, { Component } from 'react'
 
-import React, {Component} from 'react'
-import { Helmet } from 'react-helmet'
-import DevTools from 'mobx-react-devtools'
+import UpdateBlocker from '../common/UpdateBlocker'
+import ReadMe from './ReadMe'
 
-import ScrollToTopOnMount from '../common/ScrollToTopOnMount'
-
-export default class Readme extends Component {
+export default class ReadMeApp extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      id: this.initType(props)
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: this.initType(nextProps)
+    })
+  }
+  initType(props) {
+    let { id = '' } = props.match.params
+    return id
+  }
   render() {
+    const { id } = this.state
     return (
-      <div className="page">
-        <Helmet>
-          <title>ReadMe</title>
-        </Helmet>
-        <ScrollToTopOnMount />
-        <DevTools />
-        <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
-          <div className="App-intro">My React State App</div>
-        </div>
-      </div>
+      <UpdateBlocker>
+        <ReadMe id={id} />
+      </UpdateBlocker>
     )
   }
 }

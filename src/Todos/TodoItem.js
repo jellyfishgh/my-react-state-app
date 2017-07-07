@@ -17,12 +17,12 @@ export default class TodoItem extends Component {
   }
   handleSubmit(e) {
     let {editText} = this.state
-    const {deleteItem, index, changeTodoItem} = this.props
+    const {deleteItem, id, index, changeTodoItem} = this.props
     editText = editText.trim()
     if (editText) {
       changeTodoItem(index, editText)
     } else {
-      deleteItem(index)
+      deleteItem(id)
     }
   }
   handleChange(e) {
@@ -61,8 +61,8 @@ export default class TodoItem extends Component {
     return (
       <li className={ [completed ? 'completed' : '', editing ? 'editing' : ''].join(' ').trim() }>
         <div className="view">
-          <input className="toggle" type="checkbox" checked={ completed } onChange={ () => toggleItemCompleted(id) } />
-          <label onDoubleClick={ () => handleEdit(id) }>
+          <input id={id} className="toggle" type="checkbox" checked={ completed } onChange={ () => toggleItemCompleted(id) } />
+          <label onDoubleClick={ () => handleEdit(id) } htmlFor={id}>
             { label }
           </label>
           <button className="destroy" onClick={ () => deleteItem(id) } />
