@@ -11,11 +11,12 @@ import * as actionCreators from '../store/action-creators'
 
 class Home extends Component {
   componentDidMount() {
-    const {paths, dispatch} = this.props
+    const { paths, dispatch } = this.props
     paths.length === 0 && dispatch(actionCreators.getPaths())
   }
   render() {
     const { paths } = this.props
+    console.log(`Home paths: ${paths}, ${typeof paths}`)
     return (
       <div className="page">
         <Helmet>
@@ -38,8 +39,6 @@ class Home extends Component {
   }
 }
 
-export default connect(state => {
-  return {
-    paths: state._paths.paths
-  }
-})(Home)
+export default connect(state => ({
+  paths: state._paths.paths
+}))(Home)

@@ -1,8 +1,6 @@
 import { GET_TIME, GET_PATHS } from './types'
 
-const initialTimeState = {}
-
-export const _time = (state = initialTimeState, action) => {
+export const _time = (state = {}, action) => {
   console.log(
     '_time reducer called with state ',
     JSON.stringify(state),
@@ -32,8 +30,18 @@ export const _time = (state = initialTimeState, action) => {
 }
 
 export const _paths = (state = { paths: [] }, action) => {
+  console.log(
+    '_paths reducer called with state ',
+    JSON.stringify(state),
+    ' and action ',
+    JSON.stringify(action)
+  )
   switch (action.type) {
     case GET_PATHS.SUCCESS:
+      console.log({
+        ...state,
+        paths: action.result.paths
+      })
       return {
         ...state,
         paths: action.result.paths

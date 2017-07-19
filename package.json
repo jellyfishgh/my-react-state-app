@@ -29,6 +29,12 @@
     "react-scripts": "1.0.10",
     "redux-devtools": "^3.4.0"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,scss,css}": [
+      "prettier --single-quote --no-semi --list-different --write",
+      "git add"
+    ]
+  },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
@@ -41,12 +47,6 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "flow": "flow"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,scss,css}": [
-      "prettier --single-quote --no-semi --list-different --write",
-      "git add"
-    ]
   },
   "repository": {
     "type": "git",
