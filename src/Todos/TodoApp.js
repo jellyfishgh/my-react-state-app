@@ -131,7 +131,6 @@ export default class TodoApp extends Component {
   }
   render() {
     const {newTodo, items, links, currentEditingId} = this.state
-    const {type} = this.props
     const {handleNewTodoKeyDown, handleInputChange, toggleItemCompleted, deleteItem, clearHandler, toggleAllHandler, handleEdit, changeTodoItem, cancelEdit, filterItem} = this
     const activeCount = items.filter(item => !item.completed).length
     const completedCount = items.length - activeCount
@@ -164,7 +163,7 @@ export default class TodoApp extends Component {
               <span className="todo-count"><strong>{ activeCount }</strong> item{ activeCount > 1 ? 's' : '' }{ ' ' }left</span>
               <ul className="filters">
                 { links.map(({label, to}) => <li key={ to }>
-                                               <NavLink className={ type === to ? 'selected' : '' } to={ `/todos/${to}` }>
+                                               <NavLink replace={true} activeClassName="selected" to={ `/todos/${to}` }>
                                                  { label }
                                                </NavLink>
                                              </li>
@@ -172,7 +171,7 @@ export default class TodoApp extends Component {
               </ul>
               { !!completedCount &&
                 <button className="clear-completed" onClick={ clearHandler }>
-                  Clear completed
+                  Clear completed({completedCount})
                 </button> }
             </footer> }
         </section>

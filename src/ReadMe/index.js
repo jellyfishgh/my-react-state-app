@@ -16,7 +16,8 @@ export default class ReadMeApp extends Component {
     })
   }
   initType(props) {
-    let { id = '' } = props.match.params
+    let id = ''
+    props.match && props.match.params && (id = props.match.params.id)
     return id
   }
   render() {

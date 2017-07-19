@@ -1,31 +1,21 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import ScrollToTopOnMount from '../common/ScrollToTopOnMount'
 
 import routes from '../routes'
 
-import http from '../http'
+import * as actionCreators from '../store/action-creators'
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      paths: []
-    }
-  }
+class Home extends Component {
   componentDidMount() {
-    const me = this
-    http.post({
-      url: 'routes',
-      success(paths) {
-        me.setState({ paths })
-      }
-    })
+    const {paths, dispatch} = this.props
+    paths.length === 0 && dispatch(actionCreators.getPaths())
   }
   render() {
-    const { paths } = this.state
+    const { paths } = this.props
     return (
       <div className="page">
         <Helmet>
@@ -47,3 +37,9 @@ export default class Home extends Component {
     )
   }
 }
+
+export default connect(state => {
+  return {
+    paths: state._paths.paths
+  }
+})(Home)

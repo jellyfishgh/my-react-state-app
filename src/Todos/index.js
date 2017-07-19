@@ -24,7 +24,7 @@ export default class Todos extends Component {
     return type
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return this.initType(this.props) !== this.initType(nextProps)
+    return (!this.props.match.params.type) || (this.initType(this.props) !== this.initType(nextProps))
   }
   render() {
     const {type} = this.state
